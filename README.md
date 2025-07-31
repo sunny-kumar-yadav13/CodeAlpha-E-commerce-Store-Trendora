@@ -108,7 +108,8 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 ## Screenshots
 
-"C:\Users\sunny\Downloads\trendora-ecommerce\frontend\images\screenshot.png"
+![image alt](https://github.com/sunny-kumar-yadav13/CodeAlpha-E-commerce-Store-Trendora/blob/8a85bcde873b40b876bb11b74f784cab03063f56/screenshot.png)
+
 ---
 
 ## Contributing
