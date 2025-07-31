@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Logout Functionality - Trendora</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+        <h1 class="text-2xl font-bold mb-6 text-center">Test Logout Functionality</h1>
+        
+        <div id="loginSection" class="mb-6">
+            <h2 class="text-lg font-semibold mb-4">Simulate Login</h2>
+            <input type="text" id="testName" placeholder="Enter test name" class="w-full px-3 py-2 border rounded-lg mb-3">
+            <button onclick="simulateLogin()" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
+                Simulate Login
+            </button>
+        </div>
+        
+        <div id="userSection" class="hidden mb-6">
+            <h2 class="text-lg font-semibold mb-4">User Status</h2>
+            <p>Logged in as: <span id="loggedInName" class="font-medium"></span></p>
+            <button onclick="testLogout()" class="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 mt-3">
+                Test Logout Function
+            </button>
+        </div>
+        
+        <div class="mb-6">
+            <h2 class="text-lg font-semibold mb-4">Navigation Links</h2>
+            <div class="space-y-2">
+                <a href="index.html" class="block bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300">
+                    Home Page
+                </a>
+                <a href="pages/cart.html" class="block bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300">
+                    Cart Page
+                </a>
+                <a href="pages/wishlist.html" class="block bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300">
+                    Wishlist Page
+                </a>
+            </div>
+        </div>
+        
+        <div id="statusSection">
+            <h2 class="text-lg font-semibold mb-4">Current Status</h2>
+            <div id="statusDisplay" class="bg-gray-50 p-3 rounded-lg text-sm"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        function simulateLogin() {
+            const name = document.getElementById('testName').value.trim();
+            if (!name) {
+                alert('Please enter a test name');
+                return;
+            }
+            
+            // Simulate login by storing user data
+            const userData = {
+                name: name,
+                email: `${name.toLowerCase()}@test.com`,
+                isLoggedIn: true,
+                loginTime: new Date().toISOString()
+            };
+            
+            localStorage.setItem('trendora_user', JSON.stringify(userData));
+            
+            // Update UI
+            document.getElementById('loggedInName').textContent = name;
+            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('userSection').classList.remove('hidden');
+            
+            updateStatus();
+            showNotification('Login simulated successfully!', 'success');
+        }
+        
+        function testLogout() {
+            if (window.TrendoraApp && window.TrendoraApp.handleLogout) {
+                window.TrendoraApp.handleLogout();
+            } else {
+                alert('Logout function not found. Make sure main.js is loaded properly.');
+            }
+            
+            // Update UI after logout test
+            setTimeout(() => {
+                const userData = JSON.parse(localStorage.getItem('trendora_user') || '{}');
+                if (!userData.isLoggedIn) {
+                    document.getElementById('loginSection').classList.remove('hidden');
+                    document.getElementById('userSection').classList.add('hidden');
+                    document.getElementById('testName').value = '';
+                }
+                updateStatus();
+            }, 500);
+        }
+        
+        function updateStatus() {
+            const userData = JSON.parse(localStorage.getItem('trendora_user') || '{}');
+            const statusDisplay = document.getElementById('statusDisplay');
+            
+            if (userData.isLoggedIn) {
+                statusDisplay.innerHTML = `
+                    <div class="text-green-600">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        <strong>Logged In</strong><br>
+                        Name: ${userData.name}<br>
+                        Email: ${userData.email}<br>
+                        Login Time: ${new Date(userData.loginTime).toLocaleString()}
+                    </div>
+                `;
+            } else {
+                statusDisplay.innerHTML = `
+                    <div class="text-gray-600">
+                        <i class="fas fa-user-slash mr-2"></i>
+                        <strong>Not Logged In</strong><br>
+                        No user session found in localStorage
+                    </div>
+                `;
+            }
+        }
+        
+        // Initialize status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStatus();
+            
+            // Check if user is already logged in
+            const userData = JSON.parse(localStorage.getItem('trendora_user') || '{}');
+            if (userData.isLoggedIn) {
+                document.getElementById('loggedInName').textContent = userData.name;
+                document.getElementById('loginSection').classList.add('hidden');
+                document.getElementById('userSection').classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

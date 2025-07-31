@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register a new Trendora account">
+    <title>Register - Trendora</title>
+    
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <!-- TailwindCSS Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#1e40af',
+                        accent: '#f59e0b',
+                        dark: '#1f2937',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-poppins bg-gray-50">
+    <!-- Navigation Header -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <a href="../index.html" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                            <i class="fas fa-shopping-bag text-white"></i>
+                        </div>
+                        <h1 class="text-2xl font-bold text-dark">Trendora</h1>
+                    </a>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="flex items-center space-x-6">
+                    <a href="../index.html" class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    <a href="login.html" class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="min-h-screen py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-lg mx-auto">
+                <!-- Register Form Card -->
+                <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+                    <!-- Header -->
+                    <div class="bg-gradient-to-r from-primary to-secondary px-6 py-8 text-center">
+                        <h2 class="text-3xl font-bold text-white mb-2">Join Trendora</h2>
+                        <p class="text-blue-100">Create your new account</p>
+                    </div>
+                    
+                    <!-- Form -->
+                    <div class="px-6 py-8">
+                        <form id="registerForm" novalidate>
+                            <!-- First Name -->
+                            <div class="form-group mb-6">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required
+                                       class="form-input" placeholder="Enter your first name">
+                                <div class="form-error hidden"></div>
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="form-group mb-6">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required
+                                       class="form-input" placeholder="Enter your last name">
+                                <div class="form-error hidden"></div>
+                            </div>
+
+                            <!-- Email Address -->
+                            <div class="form-group mb-6">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" id="email" name="email" required
+                                       class="form-input" placeholder="Enter your email">
+                                <div class="form-error hidden"></div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group mb-6">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" id="password" name="password" required
+                                       class="form-input" placeholder="Enter a strong password">
+                                <div class="form-error hidden"></div>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class="form-group mb-6">
+                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required
+                                       class="form-input" placeholder="Confirm your password">
+                                <div class="form-error hidden"></div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" 
+                                    class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-4 rounded-lg font-semibold hover:from-secondary hover:to-primary transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                                <i class="fas fa-user-plus mr-2"></i>
+                                Sign Up
+                            </button>
+                        </form>
+
+                        <!-- Sign In Link -->
+                        <div class="mt-6 text-center">
+                            <p class="text-gray-600">Already have an account? 
+                                <a href="login.html" class="text-primary hover:text-secondary font-semibold">Sign in here</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <div class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                    <i class="fas fa-shopping-bag text-white text-sm"></i>
+                </div>
+                <h4 class="text-xl font-bold">Trendora</h4>
+            </div>
+            <p class="text-gray-400">&copy; 2024 Trendora. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script>
+        // Registration form functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const registerForm = document.getElementById('registerForm');
+
+            // Handle form submission
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validateForm(this)) {
+                    const formData = new FormData(this);
+                    const registrationData = {
+                        firstName: formData.get('firstName'),
+                        lastName: formData.get('lastName'),
+                        email: formData.get('email'),
+                        password: formData.get('password'),
+                        confirmPassword: formData.get('confirmPassword')
+                    };
+
+                    // Show loading state
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Signing Up...';
+                    submitBtn.disabled = true;
+
+                    // Simulate registration API call
+                    setTimeout(() => {
+                        console.log('Registration attempt:', registrationData);
+                        showNotification('Registration successful! Welcome to Trendora.', 'success');
+
+                        // Redirect to login page after delay
+                        setTimeout(() => {
+                            window.location.href = 'login.html';
+                        }, 1500);
+                    }, 2000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

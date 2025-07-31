@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="User Profile - Trendora">
+    <title>My Profile - Trendora</title>
+    
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+		<link rel="stylesheet" href="../css/style.css">
+    
+    <!-- Custom TailwindCSS Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        primaryLight: '#dbeafe',
+                        secondary: '#1e40af',
+                        secondaryLight: '#e0f2fe',
+                        accent: '#f59e0b',
+                        background: '#f3f4f6',
+                        cardBG: '#ffffff'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif']
+                    },
+                    boxShadow: {
+                        soft: '0 1px 3px rgba(0, 0, 0, 0.1)',
+                        medium: '0 3px 6px rgba(0, 0, 0, 0.15)',
+                        large: '0 10px 20px rgba(0, 0, 0, 0.2)'
+                    },
+                    borderRadius: {
+                        'lg': '1rem'
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="font-sans bg-background">
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-cardBG backdrop-blur-md border-b border-gray-200/50 shadow-lg transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Modern Logo -->
+                <a href="../index.html" class="flex items-center space-x-3 group cursor-pointer">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-soft group-hover:shadow-medium group-hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-gem text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-dark group-hover:text-primary transition-colors duration-300">TRENDORA</h1>
+                        <p class="text-xs text-gray-500 font-medium group-hover:text-primary transition-colors duration-300">Premium Fashion</p>
+                    </div>
+                </a>
+                
+                <!-- Navigation Links -->
+                <div class="flex items-center space-x-6">
+                    <a href="../index.html" class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    <a href="products.html" class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-shopping-bag mr-2"></i>Products
+                    </a>
+                    <a href="orders.html" class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-box mr-2"></i>Orders
+                    </a>
+                    <a href="wishlist.html" class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-heart mr-2"></i>Wishlist
+                    </a>
+                    <button id="logoutBtn" class="text-red-600 hover:text-red-800 transition-colors">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-28 pb-12">
+        <div class="container mx-auto px-4">
+            <!-- Welcome Message -->
+            <div class="mb-8 text-center">
+                <h1 class="text-4xl font-display font-semibold text-dark mb-4">Welcome to Your Profile</h1>
+                <p class="text-lg text-gray-600">Update your settings and personal information</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Profile Sidebar -->
+                <div class="lg:col-span-1">
+                    <div class="bg-cardBG rounded-lg shadow-lg p-8 text-center">
+                        <!-- Profile Image -->
+                        <div class="relative mb-6">
+                            <div id="profileImageContainer" class="w-40 h-40 mx-auto bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center overflow-hidden">
+                                <img id="profileImage" src="" alt="Profile" class="w-full h-full object-cover hidden">
+                                <i id="profileIcon" class="fas fa-user text-white text-5xl"></i>
+                            </div>
+                            <button id="changeImageBtn" class="absolute bottom-0 right-1/2 transform translate-x-1/2 bg-accent text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-yellow-600 transition-colors">
+                                <i class="fas fa-camera text-lg"></i>
+                            </button>
+                            <input type="file" id="imageUpload" accept="image/*" class="hidden">
+                        </div>
+                        
+                        <!-- User Info -->
+                        <h2 id="profileName" class="text-2xl font-bold text-dark mb-1 animate-fade-in">Loading...</h2>
+                        <p id="profileEmail" class="text-gray-600 mb-4">Loading...</p>
+                        
+                        <!-- Quick Stats -->
+                        <div class="grid grid-cols-2 gap-6 mt-6">
+                            <div class="text-center">
+                                <div id="ordersCount" class="text-3xl font-extrabold text-primary">0</div>
+                                <div class="text-sm text-gray-600">Orders</div>
+                            </div>
+                            <div class="text-center">
+                                <div id="wishlistCount" class="text-3xl font-extrabold text-accent">0</div>
+                                <div class="text-sm text-gray-600">Wishlist</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Details -->
+                <div class="lg:col-span-2">
+                    <div class="bg-cardBG rounded-lg shadow-medium">
+                        <!-- Tab Navigation -->
+                        <div class="border-b border-gray-200">
+                            <nav class="flex space-x-8 px-6">
+                                <button class="profile-tab active py-4 px-2 border-b-2 border-primary text-primary font-medium" data-tab="personal">
+                                    Personal Information
+                                </button>
+                                <button class="profile-tab py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium" data-tab="security">
+                                    Security
+                                </button>
+                                <button class="profile-tab py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium" data-tab="preferences">
+                                    Preferences
+                                </button>
+                            </nav>
+                        </div>
+
+                        <!-- Tab Content -->
+                        <div class="p-8">
+                            <!-- Personal Information Tab -->
+                            <div id="personalTab" class="tab-content">
+                                <div class="flex justify-between items-center mb-6">
+                                    <h3 class="text-2xl font-semibold text-dark">Personal Information</h3>
+                                    <button id="editProfileBtn" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                                        <i class="fas fa-edit mr-2"></i>Edit Profile
+                                    </button>
+                                </div>
+
+                                <!-- Profile Display Mode -->
+                                <div id="profileDisplay">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                            <p id="displayName" class="rounded-lg p-3 bg-gray-50 shadow-soft">Sunny Yadav</p>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                                            <p id="displayUsername" class="rounded-lg p-3 bg-gray-50 shadow-soft">sunnyyadav12</p>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                            <p id="displayEmail" class="rounded-lg p-3 bg-gray-50 shadow-soft">Loading...</p>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                            <p id="displayPhone" class="rounded-lg p-3 bg-gray-50 shadow-soft">+91 9922775511</p>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Date of Birth</label>
+                                            <p id="displayDOB" class="rounded-lg p-3 bg-gray-50 shadow-soft">July 15, 2005</p>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                                            <p id="displayGender" class="rounded-lg p-3 bg-gray-50 shadow-soft">Male</p>
+                                        </div>
+                                        <div class="md:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Address</label>
+                                            <p id="displayAddress" class="rounded-lg p-3 bg-gray-50 shadow-soft">123 Main Street, New Delhi, 120001</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Profile Edit Mode -->
+                                <div id="profileEdit" class="hidden">
+                                    <form id="profileEditForm">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div>
+                                                <label for="editName" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                                <input type="text" id="editName" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-soft focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                            </div>
+                                            <div>
+                                                <label for="editUsername" class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                                                <input type="text" id="editUsername" name="username" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-soft focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                            </div>
+                                            <div>
+                                                <label for="editEmail" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                                <input type="email" id="editEmail" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-soft focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                            </div>
+                                            <div>
+                                                <label for="editPhone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                                <input type="tel" id="editPhone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-soft focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                            </div>
+                                            <div>
+                                                <label for="editDOB" class="block text-sm font-medium text-gray-700 mb-2">Date of Birth</label>
+                                                <input type="date" id="editDOB" name="dateOfBirth" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-soft focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                            </div>
+                                            <div>
+                                                <label for="editGender" class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                                                <select id="editGender" name="gender" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-soft focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                    <option value="Prefer not to say">Prefer not to say</option>
+                                                </select>
+                                            </div>
+                                            <div class="md:col-span-2">
+                                                <label for="editAddress" class="block text-sm font-medium text-gray-700 mb-2">Address</label>
+                                                <textarea id="editAddress" name="address" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-soft focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex justify-end space-x-3 mt-8">
+                                            <button type="button" id="cancelEditBtn" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                                                Cancel
+                                            </button>
+                                            <button type="submit" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                                                <i class="fas fa-save mr-2"></i>Save Changes
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Security Tab -->
+                            <div id="securityTab" class="tab-content hidden">
+                                <h3 class="text-2xl font-semibold text-dark mb-6">Security Settings</h3>
+                                
+                                <div class="space-y-6">
+                                    <!-- Change Password -->
+                                    <div class="border border-gray-200 rounded-lg p-6">
+                                        <h4 class="text-lg font-medium text-dark mb-4">Change Password</h4>
+                                        <form id="changePasswordForm">
+                                            <div class="space-y-4">
+                                                <div>
+                                                    <label for="currentPassword" class="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
+                                                    <input type="password" id="currentPassword" name="currentPassword" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-soft focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                                </div>
+                                                <div>
+                                                    <label for="newPassword" class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+                                                    <input type="password" id="newPassword" name="newPassword" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-soft focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                                    <div id="passwordStrength" class="mt-2 hidden">
+                                                        <div class="flex items-center space-x-2">
+                                                            <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                                                <div id="strengthBar" class="h-2 rounded-full transition-all duration-300"></div>
+                                                            </div>
+                                                            <span id="strengthText" class="text-sm font-medium"></span>
+                                                        </div>
+                                                        <div id="passwordRequirements" class="mt-2 text-xs space-y-1">
+                                                            <div id="req-length" class="flex items-center text-gray-500">
+                                                                <i class="fas fa-times text-red-500 w-4 mr-2"></i>At least 8 characters
+                                                            </div>
+                                                            <div id="req-uppercase" class="flex items-center text-gray-500">
+                                                                <i class="fas fa-times text-red-500 w-4 mr-2"></i>One uppercase letter
+                                                            </div>
+                                                            <div id="req-lowercase" class="flex items-center text-gray-500">
+                                                                <i class="fas fa-times text-red-500 w-4 mr-2"></i>One lowercase letter
+                                                            </div>
+                                                            <div id="req-number" class="flex items-center text-gray-500">
+                                                                <i class="fas fa-times text-red-500 w-4 mr-2"></i>One number
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
+                                                    <input type="password" id="confirmPassword" name="confirmPassword" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-soft focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                                    <div id="passwordMatch" class="mt-1 text-sm hidden"></div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="mt-4 px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                                                <i class="fas fa-key mr-2"></i>Update Password
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                    <!-- Login Activity -->
+                                    <div class="border border-gray-200 rounded-lg p-6">
+                                        <h4 class="text-lg font-medium text-dark mb-4">Recent Login Activity</h4>
+                                        <div class="space-y-3">
+                                            <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                                <div>
+                                                    <p class="font-medium">Current Session</p>
+                                                    <p class="text-sm text-gray-600">Windows • Chrome</p>
+                                                </div>
+                                                <span class="text-sm text-green-600">Active Now</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Preferences Tab -->
+                            <div id="preferencesTab" class="tab-content hidden">
+                                <h3 class="text-2xl font-semibold text-dark mb-6">Preferences</h3>
+                                
+                                <div class="space-y-6">
+                                    <!-- Notifications -->
+                                    <div class="border border-gray-200 rounded-lg p-6">
+                                        <h4 class="text-lg font-medium text-dark mb-4">Notification Settings</h4>
+                                        <div class="space-y-3">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary focus:ring-offset-0" checked>
+                                                <span class="ml-2">Email notifications for orders</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary focus:ring-offset-0" checked>
+                                                <span class="ml-2">SMS notifications for delivery</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary focus:ring-offset-0">
+                                                <span class="ml-2">Marketing emails</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Language & Region -->
+                                    <div class="border border-gray-200 rounded-lg p-6">
+                                        <h4 class="text-lg font-medium text-dark mb-4">Language & Region</h4>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <label for="language" class="block text-sm font-medium text-gray-700 mb-2">Language</label>
+                                                <select id="language" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-soft focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                                    <option value="en" selected>English</option>
+                                                    <option value="es">Spanish</option>
+                                                    <option value="fr">French</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="currency" class="block text-sm font-medium text-gray-700 mb-2">Currency</label>
+                                                <select id="currency" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-soft focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                                    <option value="INR">INR (₹)</option>
+                                                    <option value="USD" selected>USD ($)</option>
+                                                    <option value="EUR">EUR (€)</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="text-gray-400">&copy; 2025 Trendora. All rights reserved. Built with ❤️ for modern shoppers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer" class="fixed top-4 right-4 z-50"></div>
+
+    <!-- JavaScript -->
+    <script>
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthentication();
+            initializeProfile();
+        });
+
+        function checkAuthentication() {
+            const userData = localStorage.getItem('trendora_user');
+            if (!userData) {
+                showNotification('Please login to access your profile', 'error');
+                setTimeout(() => {
+                    window.location.href = '../index.html';
+                }, 1500);
+                return false;
+            }
+            return true;
+        }
+
+        function initializeProfile() {
+            if (!checkAuthentication()) return;
+            
+            const userData = JSON.parse(localStorage.getItem('trendora_user'));
+            loadUserProfile(userData);
+            initializeProfileEvents();
+            setupImageUpload();
+            setupPasswordStrength();
+        }
+
+        function loadUserProfile(userData) {
+            // Update profile header
+            document.getElementById('profileName').textContent = userData.name || 'User';
+            document.getElementById('profileEmail').textContent = userData.email || '';
+
+            // Update display mode
+            document.getElementById('displayName').textContent = userData.name || 'Not provided';
+            document.getElementById('displayUsername').textContent = userData.username || 'Not provided';
+            document.getElementById('displayEmail').textContent = userData.email || 'Not provided';
+            document.getElementById('displayPhone').textContent = userData.phone || 'Not provided';
+            document.getElementById('displayDOB').textContent = userData.dateOfBirth ? formatDate(userData.dateOfBirth) : 'Not provided';
+            document.getElementById('displayGender').textContent = userData.gender || 'Not provided';
+            document.getElementById('displayAddress').textContent = userData.address || 'Not provided';
+
+            // Update edit form
+            document.getElementById('editName').value = userData.name || '';
+            document.getElementById('editUsername').value = userData.username || '';
+            document.getElementById('editEmail').value = userData.email || '';
+            document.getElementById('editPhone').value = userData.phone || '';
+            document.getElementById('editDOB').value = userData.dateOfBirth || '';
+            document.getElementById('editGender').value = userData.gender || '';
+            document.getElementById('editAddress').value = userData.address || '';
+
+            // Update stats (mock data for now)
+            document.getElementById('ordersCount').textContent = userData.ordersCount || '0';
+            document.getElementById('wishlistCount').textContent = userData.wishlistCount || '0';
+        }
+
+        function setupImageUpload() {
+            const changeImageBtn = document.getElementById('changeImageBtn');
+            const imageUpload = document.getElementById('imageUpload');
+            const profileImage = document.getElementById('profileImage');
+            const profileIcon = document.getElementById('profileIcon');
+
+            changeImageBtn.addEventListener('click', function() {
+                imageUpload.click();
+            });
+
+            imageUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        profileImage.src = e.target.result;
+                        profileImage.classList.remove('hidden');
+                        profileIcon.classList.add('hidden');
+                        
+                        // Save to localStorage
+                        const userData = JSON.parse(localStorage.getItem('trendora_user'));
+                        userData.profileImage = e.target.result;
+                        localStorage.setItem('trendora_user', JSON.stringify(userData));
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Load existing profile image
+            const userData = JSON.parse(localStorage.getItem('trendora_user'));
+            if (userData && userData.profileImage) {
+                profileImage.src = userData.profileImage;
+                profileImage.classList.remove('hidden');
+                profileIcon.classList.add('hidden');
+            }
+        }
+
+        function setupPasswordStrength() {
+            const newPasswordInput = document.getElementById('newPassword');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const passwordStrength = document.getElementById('passwordStrength');
+            const strengthBar = document.getElementById('strengthBar');
+            const strengthText = document.getElementById('strengthText');
+            const passwordMatch = document.getElementById('passwordMatch');
+
+            newPasswordInput.addEventListener('input', function() {
+                const password = this.value;
+                passwordStrength.classList.remove('hidden');
+                
+                // Check password requirements
+                checkPasswordRequirement('req-length', password.length >= 8);
+                checkPasswordRequirement('req-uppercase', /[A-Z]/.test(password));
+                checkPasswordRequirement('req-lowercase', /[a-z]/.test(password));
+                checkPasswordRequirement('req-number', /\d/.test(password));
+                
+                // Calculate strength
+                let strength = 0;
+                if (password.length >= 8) strength++;
+                if (/[A-Z]/.test(password)) strength++;
+                if (/[a-z]/.test(password)) strength++;
+                if (/\d/.test(password)) strength++;
+                if (/[^\w\s]/.test(password)) strength++;
+                
+                updateStrengthBar(strength);
+            });
+
+            confirmPasswordInput.addEventListener('input', function() {
+                const newPassword = newPasswordInput.value;
+                const confirmPassword = this.value;
+                
+                if (confirmPassword) {
+                    passwordMatch.classList.remove('hidden');
+                    if (newPassword === confirmPassword) {
+                        passwordMatch.textContent = 'Passwords match';
+                        passwordMatch.className = 'mt-1 text-sm text-green-600';
+                    } else {
+                        passwordMatch.textContent = 'Passwords do not match';
+                        passwordMatch.className = 'mt-1 text-sm text-red-600';
+                    }
+                } else {
+                    passwordMatch.classList.add('hidden');
+                }
+            });
+        }
+
+        function checkPasswordRequirement(elementId, isValid) {
+            const element = document.getElementById(elementId);
+            const icon = element.querySelector('i');
+            
+            if (isValid) {
+                icon.className = 'fas fa-check text-green-500 w-4 mr-2';
+                element.classList.remove('text-gray-500');
+                element.classList.add('text-green-600');
+            } else {
+                icon.className = 'fas fa-times text-red-500 w-4 mr-2';
+                element.classList.remove('text-green-600');
+                element.classList.add('text-gray-500');
+            }
+        }
+
+        function updateStrengthBar(strength) {
+            const strengthBar = document.getElementById('strengthBar');
+            const strengthText = document.getElementById('strengthText');
+            
+            const percentage = (strength / 5) * 100;
+            strengthBar.style.width = percentage + '%';
+            
+            if (strength <= 2) {
+                strengthBar.className = 'h-2 rounded-full transition-all duration-300 bg-red-500';
+                strengthText.textContent = 'Weak';
+                strengthText.className = 'text-sm font-medium text-red-600';
+            } else if (strength <= 3) {
+                strengthBar.className = 'h-2 rounded-full transition-all duration-300 bg-yellow-500';
+                strengthText.textContent = 'Fair';
+                strengthText.className = 'text-sm font-medium text-yellow-600';
+            } else if (strength <= 4) {
+                strengthBar.className = 'h-2 rounded-full transition-all duration-300 bg-blue-500';
+                strengthText.textContent = 'Good';
+                strengthText.className = 'text-sm font-medium text-blue-600';
+            } else {
+                strengthBar.className = 'h-2 rounded-full transition-all duration-300 bg-green-500';
+                strengthText.textContent = 'Strong';
+                strengthText.className = 'text-sm font-medium text-green-600';
+            }
+        }
+
+        function initializeProfileEvents() {
+            // Tab switching
+            document.querySelectorAll('.profile-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    switchTab(tabName);
+                });
+            });
+
+            // Edit profile button
+            document.getElementById('editProfileBtn').addEventListener('click', function() {
+                document.getElementById('profileDisplay').classList.add('hidden');
+                document.getElementById('profileEdit').classList.remove('hidden');
+                this.classList.add('hidden');
+            });
+
+            // Cancel edit button
+            document.getElementById('cancelEditBtn').addEventListener('click', function() {
+                document.getElementById('profileEdit').classList.add('hidden');
+                document.getElementById('profileDisplay').classList.remove('hidden');
+                document.getElementById('editProfileBtn').classList.remove('hidden');
+            });
+
+            // Profile edit form
+            document.getElementById('profileEditForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveProfileChanges();
+            });
+
+            // Change password form
+            document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                changePassword();
+            });
+
+            // Logout button
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                if (confirm('Are you sure you want to logout?')) {
+                    logout();
+                }
+            });
+        }
+
+        function switchTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.profile-tab').forEach(tab => {
+                tab.classList.remove('active', 'border-primary', 'text-primary');
+                tab.classList.add('border-transparent', 'text-gray-500');
+            });
+
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active', 'border-primary', 'text-primary');
+            document.querySelector(`[data-tab="${tabName}"]`).classList.remove('border-transparent', 'text-gray-500');
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            document.getElementById(tabName + 'Tab').classList.remove('hidden');
+        }
+
+        function saveProfileChanges() {
+            const formData = new FormData(document.getElementById('profileEditForm'));
+            let userData = JSON.parse(localStorage.getItem('trendora_user')) || {};
+
+            // Update user data
+            userData.name = formData.get('name');
+            userData.username = formData.get('username');
+            userData.email = formData.get('email');
+            userData.phone = formData.get('phone');
+            userData.dateOfBirth = formData.get('dateOfBirth');
+            userData.gender = formData.get('gender');
+            userData.address = formData.get('address');
+
+            // Save to localStorage
+            localStorage.setItem('trendora_user', JSON.stringify(userData));
+
+            // Update display
+            loadUserProfile(userData);
+
+            // Switch back to display mode
+            document.getElementById('profileEdit').classList.add('hidden');
+            document.getElementById('profileDisplay').classList.remove('hidden');
+            document.getElementById('editProfileBtn').classList.remove('hidden');
+
+            showNotification('Profile updated successfully!', 'success');
+        }
+
+        function changePassword() {
+            const formData = new FormData(document.getElementById('changePasswordForm'));
+            const currentPassword = formData.get('currentPassword');
+            const newPassword = formData.get('newPassword');
+            const confirmPassword = formData.get('confirmPassword');
+
+            if (newPassword !== confirmPassword) {
+                showNotification('New passwords do not match!', 'error');
+                return;
+            }
+
+            if (newPassword.length < 8) {
+                showNotification('Password must be at least 8 characters long!', 'error');
+                return;
+            }
+
+            // Simulate password change
+            showNotification('Password updated successfully!', 'success');
+            document.getElementById('changePasswordForm').reset();
+            document.getElementById('passwordStrength').classList.add('hidden');
+            document.getElementById('passwordMatch').classList.add('hidden');
+        }
+
+        function logout() {
+            localStorage.removeItem('trendora_user');
+            showNotification('Logged out successfully', 'info');
+            setTimeout(() => {
+                window.location.href = '../index.html';
+            }, 1500);
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function showNotification(message, type = 'info') {
+            const container = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            
+            let bgColor = 'bg-blue-500';
+            let icon = 'fa-info-circle';
+            
+            switch(type) {
+                case 'success':
+                    bgColor = 'bg-green-500';
+                    icon = 'fa-check-circle';
+                    break;
+                case 'error':
+                    bgColor = 'bg-red-500';
+                    icon = 'fa-exclamation-circle';
+                    break;
+                case 'warning':
+                    bgColor = 'bg-yellow-500';
+                    icon = 'fa-exclamation-triangle';
+                    break;
+            }
+            
+            notification.className = `${bgColor} text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-2 mb-2 transform translate-x-full transition-transform duration-300`;
+            notification.innerHTML = `
+                <i class="fas ${icon}"></i>
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()" class="ml-4 text-white hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            container.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.classList.add('translate-x-full');
+                    setTimeout(() => {
+                        if (notification.parentElement) {
+                            notification.remove();
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        }
+
+        // Create default user if none exists (for testing)
+        if (!localStorage.getItem('trendora_user')) {
+            const defaultUser = {
+                name: 'John Doe',
+                username: 'johndoe',
+                email: 'john@example.com',
+                phone: '+1 (555) 123-4567',
+                dateOfBirth: '1990-01-15',
+                gender: 'Male',
+                address: '123 Main Street, New York, NY 10001',
+                ordersCount: 5,
+                wishlistCount: 12
+            };
+            localStorage.setItem('trendora_user', JSON.stringify(defaultUser));
+        }
+    </script>
+</body>
+</html>

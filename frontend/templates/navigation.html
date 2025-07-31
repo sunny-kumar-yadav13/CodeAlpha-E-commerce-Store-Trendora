@@ -1,0 +1,177 @@
+<!-- Navigation Template -->
+<nav class="modern-header sticky top-0 z-50 transition-all duration-300">
+    <!-- Modern Background with Animated Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <!-- Base gradient background -->
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900"></div>
+        
+        <!-- Animated gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/30 to-pink-600/20 animate-gradient-x"></div>
+        
+        <!-- Geometric patterns -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full blur-3xl animate-float-slow"></div>
+            <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full blur-2xl animate-float-reverse"></div>
+            <div class="absolute bottom-0 left-1/3 w-24 h-24 bg-gradient-to-br from-green-400 to-cyan-500 rounded-full blur-xl animate-float-delayed"></div>
+        </div>
+        
+        <!-- Mesh gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
+        
+        <!-- Noise texture overlay -->
+        <div class="absolute inset-0 opacity-20 mix-blend-soft-light" styles="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9Im5vaXNlIiB4PSIwJSIgeT0iMCUiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPgogICAgICA8ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9IjAuOSIgbnVtT2N0YXZlcz0iNCIgcmVzdWx0PSJub2lzZSIgc2VlZD0iMSIvPgogICAgICA8ZmVDb2xvck1hdHJpeCBpbj0ibm9pc2UiIHR5cGU9InNhdHVyYXRlIiB2YWx1ZXM9IjAiLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbm9pc2UpIiBvcGFjaXR5PSIwLjQiLz4KPC9zdmc+'); background-size: 200px 200px;"></div>
+    </div>
+    
+    <div class="relative container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3 group">
+                <div class="relative">
+                    <!-- Logo background with glow effect -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition-all duration-300 animate-pulse-glow"></div>
+                    <div class="relative w-12 h-12 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl group-hover:shadow-cyan-500/25 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                        <i class="fas fa-shopping-bag text-white text-lg drop-shadow-lg"></i>
+                    </div>
+                </div>
+                <div>
+                    <a href="../index.html">
+                        <h1 class="text-2xl font-display font-bold bg-gradient-to-r from-white via-cyan-100 to-purple-200 bg-clip-text text-transparent drop-shadow-lg">Trendora</h1>
+                        <p class="text-xs text-cyan-200/80 font-medium tracking-wide">Premium Fashion</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Search Bar (Compact) -->
+            <div class="hidden lg:flex flex-1 max-w-md mx-8">
+                <div class="relative w-full group">
+                    <input type="text" id="searchInput" placeholder="Search products..." 
+                           class="w-full px-4 py-2 pl-10 bg-white/80 backdrop-blur-sm border border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent shadow-soft transition-all duration-300 hover:shadow-medium text-neutral-700 placeholder-neutral-500 text-sm">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-400 group-focus-within:text-primary-500 transition-colors text-sm"></i>
+                    <!-- Search Suggestions -->
+                    <div id="searchSuggestions" class="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm border border-white/30 rounded-xl shadow-large hidden z-10 mt-2"></div>
+                </div>
+            </div>
+            
+            <!-- Navigation Links -->
+            <div class="flex items-center space-x-2">
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-1">
+                    <a href="../index.html" class="nav-link px-4 py-2 text-white/80 hover:text-white font-medium transition-all duration-300 rounded-xl hover:bg-white/10 relative group">
+                        <span class="relative z-10">Home</span>
+                        <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 group-hover:w-full group-hover:left-0 rounded-full"></span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-cyan-400/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </a>
+                    <a href="products.html" class="nav-link px-4 py-2 text-white/80 hover:text-white font-medium transition-all duration-300 rounded-xl hover:bg-white/10 relative group">
+                        <span class="relative z-10">Products</span>
+                        <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 group-hover:w-full group-hover:left-0 rounded-full"></span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-cyan-400/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </a>
+                    <a href="categories.html" class="nav-link px-4 py-2 text-white/80 hover:text-white font-medium transition-all duration-300 rounded-xl hover:bg-white/10 relative group">
+                        <span class="relative z-10">Categories</span>
+                        <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 group-hover:w-full group-hover:left-0 rounded-full"></span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-cyan-400/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </a>
+                </div>
+                
+                <!-- User Account -->
+                <div class="relative group">
+                    <button id="accountBtn" class="p-3 text-white/80 hover:text-white transition-all duration-300 rounded-xl hover:bg-white/10 relative overflow-hidden">
+                        <i class="fas fa-user text-lg relative z-10"></i>
+                        <div class="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </button>
+                    <div id="accountDropdown" class="absolute right-0 mt-2 w-56 bg-white/95 backdrop-blur-sm border border-white/30 rounded-2xl shadow-large opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        <div class="p-2">
+                            <a href="login.html" class="flex items-center px-4 py-3 text-neutral-700 hover:text-primary-600 hover:bg-primary-50 rounded-xl transition-all duration-200">
+                                <i class="fas fa-sign-in-alt mr-3 w-4"></i>
+                                Sign In
+                            </a>
+                            <a href="register.html" class="flex items-center px-4 py-3 text-neutral-700 hover:text-primary-600 hover:bg-primary-50 rounded-xl transition-all duration-200">
+                                <i class="fas fa-user-plus mr-3 w-4"></i>
+                                Register
+                            </a>
+                            <div class="border-t border-neutral-200 my-2"></div>
+                            <a href="profile.html" class="flex items-center px-4 py-3 text-neutral-700 hover:text-primary-600 hover:bg-primary-50 rounded-xl transition-all duration-200">
+                                <i class="fas fa-user mr-3 w-4"></i>
+                                Profile
+                            </a>
+                            <a href="orders.html" class="flex items-center px-4 py-3 text-neutral-700 hover:text-primary-600 hover:bg-primary-50 rounded-xl transition-all duration-200">
+                                <i class="fas fa-box mr-3 w-4"></i>
+                                Orders
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Wishlist -->
+                <div class="relative group">
+                    <a href="wishlist.html" class="p-3 text-white/80 hover:text-white transition-all duration-300 rounded-xl hover:bg-white/10 relative overflow-hidden">
+                        <i class="fas fa-heart text-lg relative z-10"></i>
+                        <span id="wishlistCount" class="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-soft animate-bounce-gentle z-20">0</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-red-400/30 to-pink-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </a>
+                </div>
+                
+                <!-- Shopping Cart -->
+                <div class="relative group">
+                    <a href="cart.html" class="p-3 text-white/80 hover:text-white transition-all duration-300 rounded-xl hover:bg-white/10 relative overflow-hidden">
+                        <i class="fas fa-shopping-cart text-lg relative z-10"></i>
+                        <span id="cartCount" class="absolute -top-1 -right-1 bg-gradient-to-r from-accent-500 to-yellow-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-soft animate-bounce-gentle z-20">0</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-accent-400/20 to-yellow-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="lg:hidden p-3 text-white/80 hover:text-white transition-all duration-300 rounded-xl hover:bg-white/10 relative overflow-hidden group">
+                    <i class="fas fa-bars text-lg relative z-10"></i>
+                    <div class="absolute inset-0 bg-gradient-to-r from-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="lg:hidden hidden border-t border-white/20 backdrop-blur-sm">
+            <div class="p-4 space-y-4">
+                <!-- Mobile Search -->
+                <div class="relative">
+                    <input type="text" placeholder="Search products..." 
+                           class="w-full px-4 py-3 pl-11 bg-white/80 backdrop-blur-sm border border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-400 shadow-soft">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-400"></i>
+                </div>
+                
+                <!-- Mobile Navigation Links -->
+                <div class="space-y-2">
+                    <a href="../index.html" class="block px-4 py-3 text-neutral-700 hover:text-primary-600 hover:bg-white/50 rounded-xl transition-all duration-200 font-medium">
+                        <i class="fas fa-home mr-3 w-4"></i>
+                        Home
+                    </a>
+                    <a href="products.html" class="block px-4 py-3 text-neutral-700 hover:text-primary-600 hover:bg-white/50 rounded-xl transition-all duration-200 font-medium">
+                        <i class="fas fa-shopping-bag mr-3 w-4"></i>
+                        Products
+                    </a>
+                    <a href="categories.html" class="block px-4 py-3 text-neutral-700 hover:text-primary-600 hover:bg-white/50 rounded-xl transition-all duration-200 font-medium">
+                        <i class="fas fa-th-large mr-3 w-4"></i>
+                        Categories
+                    </a>
+                    <a href="wishlist.html" class="block px-4 py-3 text-red-600 bg-red-50 rounded-xl font-medium">
+                        <i class="fas fa-heart mr-3 w-4"></i>
+                        Wishlist
+                    </a>
+                    <a href="cart.html" class="block px-4 py-3 text-neutral-700 hover:text-primary-600 hover:bg-white/50 rounded-xl transition-all duration-200 font-medium">
+                        <i class="fas fa-shopping-cart mr-3 w-4"></i>
+                        Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Navigation Script -->
+<script>
+    // Mobile menu toggle
+    document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
+

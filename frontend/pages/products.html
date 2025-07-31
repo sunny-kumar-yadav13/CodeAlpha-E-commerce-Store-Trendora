@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse all products at Trendora - Fashion and Lifestyle">
+    <meta name="keywords" content="products, fashion, ecommerce, shopping">
+    <title>Products - Trendora</title>
+    
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <!-- TailwindCSS Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        secondary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            50: '#fefce8',
+                            100: '#fef9c3',
+                            200: '#fef08a',
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                            800: '#854d0e',
+                            900: '#713f12',
+                        },
+                        neutral: {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        },
+                        dark: '#1a1a1a'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'display': ['Playfair Display', 'serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'slide-down': 'slideDown 0.6s ease-out',
+                        'scale-in': 'scaleIn 0.3s ease-out',
+                        'bounce-gentle': 'bounceGentle 2s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        bounceGentle: {
+                            '0%, 20%, 50%, 80%, 100%': { transform: 'translateY(0)' },
+                            '40%': { transform: 'translateY(-10px)' },
+                            '60%': { transform: 'translateY(-5px)' },
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+                        'medium': '0 4px 25px -2px rgba(0, 0, 0, 0.1), 0 25px 25px -5px rgba(0, 0, 0, 0.04)',
+                        'large': '0 10px 40px -4px rgba(0, 0, 0, 0.1), 0 35px 35px -10px rgba(0, 0, 0, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans scroll-smooth bg-gradient-to-br from-neutral-50 via-primary-50 to-secondary-50 min-h-screen">
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-lg transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Modern Logo -->
+                <a href="../index.html" class="flex items-center space-x-3 group cursor-pointer">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-gem text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-dark group-hover:text-primary-600 transition-colors duration-300">TRENDORA</h1>
+                        <p class="text-xs text-gray-500 font-medium group-hover:text-primary-500 transition-colors duration-300">Premium Fashion</p>
+                    </div>
+                </a>
+                
+                <!-- Search Bar (Desktop) -->
+                <div class="hidden lg:flex flex-1 max-w-lg mx-8">
+                    <div class="relative w-full">
+                        <input type="text" id="searchInput" placeholder="Search products, brands, categories..." 
+                               class="w-full px-4 py-2.5 pl-11 pr-12 bg-gray-50 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 text-sm">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
+                        <button class="absolute right-3 top-1/2 transform -translate-y-1/2 p-1.5 text-gray-400 hover:text-primary-600 transition-colors duration-200">
+                            <i class="fas fa-microphone text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="flex items-center space-x-2">
+                    <!-- Desktop Navigation -->
+                    <div class="hidden lg:flex items-center space-x-1 mr-4">
+                        <a href="../index.html" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-all duration-200">
+                           <i class="fas fa-home mr-2"></i>Home
+                        </a>
+                        <a href="products.html" class="px-3 py-2 text-sm font-medium text-primary-600 bg-primary-50 rounded-lg transition-all duration-200">
+                            <i class="fas fa-shopping-bag mr-2"></i>Products
+                        </a>
+                        <a href="#categories" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-all duration-200">
+                           <i class="fas fa-tags mr-2"></i>Categories
+                        </a>
+                    </div>
+                    
+                    <!-- Account Dropdown -->
+                    <div class="relative group">
+                        <button id="accountBtn" class="flex items-center space-x-2 px-3 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition-all duration-200 group">
+                            <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white text-sm"></i>
+                            </div>
+                            <div class="hidden sm:block text-left">
+                                <div id="usernameDisplay" class="text-sm font-medium text-gray-900">Account</div>
+                                <div id="accountSubtitle" class="text-xs text-gray-500">Profile & Settings</div>
+                            </div>
+                            <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-200"></i>
+                        </button>
+                        
+                        <!-- Account Dropdown Menu -->
+                        <div id="accountDropdown" class="hidden absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50">
+                            <div class="px-4 py-3 border-b border-gray-100">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-user text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Welcome back!</div>
+                                        <div class="text-sm text-gray-500">Manage your account</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-2">
+                                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                                    <i class="fas fa-user-circle mr-3 text-primary-500"></i>
+                                    My Profile
+                                </a>
+                                <a href="orders.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                                    <i class="fas fa-shopping-bag mr-3 text-primary-500"></i>
+                                    My Orders
+                                </a>
+                                <a href="wishlist.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                                    <i class="fas fa-heart mr-3 text-rose-500"></i>
+                                    My Wishlist
+                                </a>
+                                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                                    <i class="fas fa-cog mr-3 text-primary-500"></i>
+                                    Settings
+                                </a>
+                                <div class="border-t border-gray-100 my-2"></div>
+                                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                                    <i class="fas fa-sign-out-alt mr-3 text-red-500"></i>
+                                    Sign Out
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wishlist -->
+                    <a href="wishlist.html" class="relative flex items-center space-x-2 px-3 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition-all duration-200 group">
+                        <div class="w-8 h-8 bg-gradient-to-br from-rose-500 to-pink-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-heart text-white text-sm"></i>
+                        </div>
+                        <div class="hidden sm:block text-left">
+                            <div class="text-sm font-medium text-gray-900">Wishlist</div>
+                            <div class="text-xs text-gray-500">Saved Items</div>
+                        </div>
+                        <span id="wishlistCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">0</span>
+                    </a>
+                    
+                    <!-- Shopping Cart -->
+                    <a href="cart.html" class="relative flex items-center space-x-2 px-3 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition-all duration-200 group">
+                        <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-shopping-cart text-white text-sm"></i>
+                        </div>
+                        <div class="hidden sm:block text-left">
+                            <div class="text-sm font-medium text-gray-900">Cart</div>
+                            <div class="text-xs text-gray-500">Your Items</div>
+                        </div>
+                        <span id="cartCount" class="absolute -top-1 -right-1 bg-amber-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">0</span>
+                    </a>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="lg:hidden p-2 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-all duration-200">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="lg:hidden hidden bg-white border-t border-gray-200">
+                <div class="py-4 space-y-2">
+                    <!-- Mobile Search -->
+                    <div class="px-4 mb-4">
+                        <div class="relative">
+                            <input type="text" placeholder="Search products..." 
+                                   class="w-full px-4 py-2.5 pl-11 bg-gray-50 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 text-sm">
+                            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
+                        </div>
+                    </div>
+                    
+                    <a href="../index.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors duration-200">
+                        <i class="fas fa-home mr-3 text-primary-600"></i>Home
+                    </a>
+                    <a href="products.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors duration-200 bg-primary-50">
+                        <i class="fas fa-shopping-bag mr-3 text-primary-600"></i>Products
+                    </a>
+                    <a href="#categories" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors duration-200">
+                        <i class="fas fa-tags mr-3 text-primary-600"></i>Categories
+                    </a>
+                    <div class="border-t border-gray-200 my-2"></div>
+                    <a href="profile.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors duration-200">
+                        <i class="fas fa-user-circle mr-3 text-primary-600"></i>Profile
+                    </a>
+                    <a href="orders.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors duration-200">
+                        <i class="fas fa-box mr-3 text-primary-600"></i>Orders
+                    </a>
+                    <a href="wishlist.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors duration-200">
+                        <i class="fas fa-heart mr-3 text-rose-500"></i>Wishlist
+                    </a>
+                    <a href="cart.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors duration-200">
+                        <i class="fas fa-shopping-cart mr-3 text-emerald-500"></i>Cart
+                    </a>
+                    <div class="border-t border-gray-200 my-2"></div>
+                    <a href="login.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors duration-200">
+                        <i class="fas fa-sign-out-alt mr-3 text-gray-500"></i>Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-4 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center space-x-2 text-sm">
+                <a href="../index.html" class="text-gray-600 hover:text-primary">Home</a>
+                <i class="fas fa-chevron-right text-gray-400"></i>
+                <span class="text-primary font-medium">Products</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="py-8">
+        <div class="container mx-auto px-4">
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Sidebar Filters -->
+                <aside class="lg:w-1/4">
+                    <div class="bg-white p-6 rounded-lg shadow-lg sticky top-24">
+                        <h3 class="text-lg font-semibold text-dark mb-6">Filters</h3>
+                        
+                        <!-- Categories Filter -->
+                        <div class="mb-6">
+                            <h4 class="font-medium text-dark mb-3">Categories</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="category" value="women" class="rounded text-primary">
+                                    <span class="ml-2 text-gray-700">Women's Fashion</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="category" value="men" class="rounded text-primary">
+                                    <span class="ml-2 text-gray-700">Men's Fashion</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="category" value="accessories" class="rounded text-primary">
+                                    <span class="ml-2 text-gray-700">Accessories</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="category" value="sports" class="rounded text-primary">
+                                    <span class="ml-2 text-gray-700">Sports</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Price Range Filter -->
+                        <div class="mb-6">
+                            <h4 class="font-medium text-dark mb-3">Price Range</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-2">
+                                    <input type="number" id="minPrice" placeholder="Min" class="w-20 px-2 py-1 border rounded text-sm">
+                                    <span>-</span>
+                                    <input type="number" id="maxPrice" placeholder="Max" class="w-20 px-2 py-1 border rounded text-sm">
+                                </div>
+                                <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="priceRange" value="0-4000" class="text-primary">
+                                    <span class="ml-2 text-gray-700">₹0 - ₹500</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="priceRange" value="4000-8000" class="text-primary">
+                                    <span class="ml-2 text-gray-700">₹500 - ₹1000</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="priceRange" value="8000-16000" class="text-primary">
+                                    <span class="ml-2 text-gray-700">₹1000 - ₹1500</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="priceRange" value="16000+" class="text-primary">
+                                    <span class="ml-2 text-gray-700">₹1500+</span>
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rating Filter -->
+                        <div class="mb-6">
+                            <h4 class="font-medium text-dark mb-3">Rating</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="rating" value="4" class="rounded text-primary">
+                                    <span class="ml-2 flex items-center">
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span class="ml-1 text-gray-700">& up</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="rating" value="3" class="rounded text-primary">
+                                    <span class="ml-2 flex items-center">
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span class="ml-1 text-gray-700">& up</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Clear Filters -->
+                        <button id="clearFilters" class="w-full bg-gray-200 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors">
+                            Clear All Filters
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- Products Section -->
+                <section class="lg:w-3/4">
+                    <!-- Toolbar -->
+                    <div class="bg-white p-4 rounded-lg shadow-lg mb-6">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                            <div>
+                                <p id="productCount" class="text-gray-600">Loading products...</p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex items-center space-x-2">
+                                    <label for="sortBy" class="text-sm text-gray-600">Sort by:</label>
+                                    <select id="sortBy" class="border border-gray-300 rounded px-3 py-1 text-sm">
+                                        <option value="name">Name</option>
+                                        <option value="price-low">Price: Low to High</option>
+                                        <option value="price-high">Price: High to Low</option>
+                                        <option value="rating">Rating</option>
+                                        <option value="newest">Newest</option>
+                                    </select>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    <button id="gridView" class="p-2 text-gray-600 hover:text-primary transition-colors">
+                                        <i class="fas fa-th"></i>
+                                    </button>
+                                    <button id="listView" class="p-2 text-gray-600 hover:text-primary transition-colors">
+                                        <i class="fas fa-list"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div id="productsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Products will be loaded here -->
+                    </div>
+
+                    <!-- Pagination -->
+                    <div id="pagination" class="mt-8 flex justify-center">
+                        <nav class="flex items-center space-x-2">
+                            <button class="px-3 py-2 text-gray-500 hover:text-primary">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="px-3 py-2 bg-primary text-white rounded">1</button>
+                            <button class="px-3 py-2 text-gray-500 hover:text-primary">2</button>
+                            <button class="px-3 py-2 text-gray-500 hover:text-primary">3</button>
+                            <button class="px-3 py-2 text-gray-500 hover:text-primary">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </nav>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="relative w-12 h-12 bg-gradient-to-br from-purple-500 via-pink-500 via-orange-400 to-yellow-400 rounded-xl flex items-center justify-center shadow-lg transform hover:rotate-6 transition-all duration-300 group">
+                            <i class="fas fa-gem text-white text-lg group-hover:scale-110 transition-transform duration-300"></i>
+                            <div class="absolute inset-0 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl opacity-0 group-hover:opacity-75 transition-opacity duration-300"></div>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent animate-pulse">TRENDORA</h4>
+                            <p class="text-xs text-gray-300 font-medium bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">Premium Fashion</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4">Your premium destination for fashion and lifestyle products.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 class="text-lg font-semibold mb-4">Quick Links</h5>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Info</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="text-lg font-semibold mb-4">Categories</h5>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Women's Fashion</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Men's Fashion</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Footwear</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Accessories</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="text-lg font-semibold mb-4">Newsletter</h5>
+                    <p class="text-gray-400 mb-4">Subscribe to get updates on new arrivals and offers</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" 
+                               class="flex-1 px-3 py-2 bg-gray-800 text-white rounded-l-lg focus:outline-none">
+                        <button class="bg-primary hover:bg-secondary px-4 py-2 rounded-r-lg transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Trendora. All rights reserved. Built with ❤️ for modern shoppers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/products.js"></script>
+    <script src="../js/wishlist.js"></script>
+    <script>
+        // Products page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Products page loaded, initializing...');
+            
+            // Initialize navigation
+            initializeNavigation();
+            
+            // Wait for main.js to load
+            setTimeout(() => {
+                // Update cart and wishlist counts
+                updateCartDisplayProper();
+                updateWishlistDisplayProper();
+                
+                // Load products
+                loadProductsPage();
+            }, 200);
+            
+            // Handle filters
+            const filterInputs = document.querySelectorAll('input[name="category"], input[name="rating"], input[name="priceRange"]');
+            filterInputs.forEach(input => {
+                input.addEventListener('change', applyFilters);
+            });
+            
+            // Handle price range inputs
+            document.getElementById('minPrice').addEventListener('input', applyFilters);
+            document.getElementById('maxPrice').addEventListener('input', applyFilters);
+            
+            // Handle sorting
+            document.getElementById('sortBy').addEventListener('change', applyFilters);
+            
+            // Handle view toggle
+            document.getElementById('gridView').addEventListener('click', () => toggleView('grid'));
+            document.getElementById('listView').addEventListener('click', () => toggleView('list'));
+            
+            // Handle clear filters
+            document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
+            
+            // Handle search
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+            
+            // Update counts when storage changes
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'trendora_wishlist' || e.key === 'wishlist') {
+                    console.log('Wishlist storage changed, updating display');
+                    updateWishlistDisplayProper();
+                }
+                if (e.key === 'trendora_cart') {
+                    console.log('Cart storage changed, updating display');
+                    updateCartDisplayProper();
+                }
+            });
+        });
+        
+        // Navigation functionality
+        function initializeNavigation() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const accountBtn = document.getElementById('accountBtn');
+            const accountDropdown = document.getElementById('accountDropdown');
+
+            // Mobile menu toggle
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                });
+            }
+
+            // Account dropdown toggle
+            if (accountBtn && accountDropdown) {
+                accountBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    accountDropdown.classList.toggle('hidden');
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function() {
+                    accountDropdown.classList.add('hidden');
+                });
+            }
+        }
+        
+        // Update cart display count
+        function updateCartDisplayProper() {
+            console.log('Starting cart display update...');
+            
+            if (typeof getCart === 'function') {
+                const cart = getCart();
+                const cartItems = Object.values(cart || {});
+                const totalItems = cartItems.reduce((total, item) => total + (item.quantity || 0), 0);
+                console.log('Cart items:', cartItems, 'Total:', totalItems);
+                updateCartCountElements(totalItems);
+            } else {
+                const cart = getCartLocal();
+                const cartItems = Object.values(cart);
+                const totalItems = cartItems.reduce((total, item) => total + (item.quantity || 0), 0);
+                console.log('Local cart items:', cartItems, 'Total:', totalItems);
+                updateCartCountElements(totalItems);
+            }
+        }
+        
+        function updateCartCountElements(count) {
+            const cartCountElements = document.querySelectorAll('#cartCount, .cart-count, [data-cart-count]');
+            cartCountElements.forEach(element => {
+                if (element) {
+                    element.textContent = count || 0;
+                }
+            });
+        }
+        
+        // Update wishlist display count
+        function updateWishlistDisplayProper() {
+            console.log('Starting wishlist display update...');
+            
+            if (typeof getWishlistItems === 'function') {
+                const wishlistItems = getWishlistItems();
+                const count = Array.isArray(wishlistItems) ? wishlistItems.length : 0;
+                console.log('Wishlist items:', wishlistItems, 'Count:', count);
+                updateWishlistCountElements(count);
+            } else {
+                const wishlistItems = getWishlistItemsLocal();
+                const count = wishlistItems.length;
+                console.log('Local wishlist items:', wishlistItems, 'Count:', count);
+                updateWishlistCountElements(count);
+            }
+        }
+        
+        function updateWishlistCountElements(count) {
+            const wishlistCountElements = document.querySelectorAll('#wishlistCount, .wishlist-count, [data-wishlist-count]');
+            wishlistCountElements.forEach(element => {
+                if (element) {
+                    element.textContent = count;
+                }
+            });
+        }
+        
+        // Get cart items from localStorage - local version
+        function getCartLocal() {
+            try {
+                const cart = localStorage.getItem('trendora_cart');
+                return cart ? JSON.parse(cart) : {};
+            } catch (e) {
+                console.error('Error reading cart:', e);
+                return {};
+            }
+        }
+        
+        // Get wishlist items from localStorage - local version
+        function getWishlistItemsLocal() {
+            try {
+                let items = localStorage.getItem('trendora_wishlist') || 
+                           localStorage.getItem('wishlist') || 
+                           localStorage.getItem('trendora_wishlist_items');
+                
+                if (items) {
+                    const parsed = JSON.parse(items);
+                    if (Array.isArray(parsed)) {
+                        return parsed;
+                    } else if (typeof parsed === 'object' && parsed !== null) {
+                        return Object.values(parsed);
+                    } else {
+                        return [parsed].filter(item => item != null);
+                    }
+                }
+                return [];
+            } catch (e) {
+                console.error('Error reading wishlist:', e);
+                return [];
+            }
+        }
+        
+        function applyFilters() {
+            const filters = {
+                category: Array.from(document.querySelectorAll('input[name="category"]:checked')).map(input => input.value),
+                rating: Array.from(document.querySelectorAll('input[name="rating"]:checked')).map(input => parseInt(input.value)),
+                priceRange: document.querySelector('input[name="priceRange"]:checked')?.value,
+                minPrice: parseInt(document.getElementById('minPrice').value) || 0,
+                maxPrice: parseInt(document.getElementById('maxPrice').value) || 50000,
+                sortBy: document.getElementById('sortBy').value,
+                search: document.getElementById('searchInput').value
+            };
+            
+            loadProductsPage(filters);
+        }
+        
+        function toggleView(viewType) {
+            const container = document.getElementById('productsContainer');
+            const gridBtn = document.getElementById('gridView');
+            const listBtn = document.getElementById('listView');
+            
+            if (viewType === 'grid') {
+                container.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6';
+                gridBtn.classList.add('text-primary');
+                listBtn.classList.remove('text-primary');
+            } else {
+                container.className = 'space-y-4';
+                listBtn.classList.add('text-primary');
+                gridBtn.classList.remove('text-primary');
+            }
+        }
+        
+        function clearAllFilters() {
+            // Clear all checkboxes and inputs
+            document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+                input.checked = false;
+            });
+            document.getElementById('minPrice').value = '';
+            document.getElementById('maxPrice').value = '';
+            document.getElementById('sortBy').value = 'name';
+            document.getElementById('searchInput').value = '';
+            
+            // Reload products
+            loadProductsPage();
+        }
+        
+        function handleSearch() {
+            const searchTerm = document.getElementById('searchInput').value;
+            if (searchTerm.length > 2 || searchTerm.length === 0) {
+                applyFilters();
+            }
+        }
+    </script>
+</body>
+</html>

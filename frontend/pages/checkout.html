@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trendora Checkout - Complete Your Purchase">
+    <meta name="keywords" content="checkout, secure payment, fashion, ecommerce">
+    <title>Secure Checkout - Trendora</title>
+    
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <!-- TailwindCSS Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        secondary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            50: '#fefce8',
+                            100: '#fef9c3',
+                            200: '#fef08a',
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                            800: '#854d0e',
+                            900: '#713f12',
+                        },
+                        neutral: {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Poppins', 'Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'scale-in': 'scaleIn 0.3s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+                        'medium': '0 4px 25px -2px rgba(0, 0, 0, 0.1), 0 25px 25px -5px rgba(0, 0, 0, 0.04)',
+                        'large': '0 10px 40px -4px rgba(0, 0, 0, 0.1), 0 35px 35px -10px rgba(0, 0, 0, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .input-group {
+            position: relative;
+        }
+        
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label {
+            transform: translateY(-20px) scale(0.8);
+            color: #2563eb;
+        }
+        
+        .input-group label {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            color: #6b7280;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            background: white;
+            padding: 0 4px;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -4px rgba(0, 0, 0, 0.15);
+        }
+        
+        .step-indicator {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .step-indicator:hover {
+            transform: scale(1.05);
+        }
+        
+        .step-circle {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .step-circle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s;
+        }
+        
+        .step-circle.active::before {
+            left: 100%;
+        }
+        
+        .step-text {
+            transition: all 0.3s ease;
+        }
+        
+        .step-indicator.completed .step-circle {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+        
+        .step-indicator.active .step-circle {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+            animation: pulse-glow 2s infinite;
+        }
+        
+        .step-indicator.inactive .step-circle {
+            background: #e5e7eb;
+            color: #9ca3af;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 25px rgba(59, 130, 246, 0.6);
+            }
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gradient-to-br from-neutral-50 via-primary-50 to-secondary-50 min-h-screen">
+    <!-- Background Pattern -->
+    <div class="fixed inset-0 opacity-5 pointer-events-none">
+        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23000000" fill-opacity="0.1"><circle cx="30" cy="30" r="2"/></g></g></svg>'); background-size: 60px 60px;"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="relative z-10 bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="../index.html" class="flex items-center space-x-3 group transition-all duration-300 hover:scale-105">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg group-hover:shadow-primary-600/25">
+                        <i class="fas fa-gem text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors duration-300">TRENDORA</h1>
+                        <p class="text-xs text-gray-500 font-medium">Secure Checkout</p>
+                    </div>
+                </a>
+                
+                <!-- Security Badge -->
+                <div class="flex items-center space-x-2 text-sm text-gray-600">
+                    <i class="fas fa-lock text-green-500"></i>
+                    <span class="hidden sm:inline">Secure & Encrypted</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Page Title -->
+            <div class="text-center mb-12 animate-slide-up">
+                <h1 class="text-4xl sm:text-5xl font-display font-bold text-neutral-800 mb-4">
+                    Complete Your 
+                    <span class="gradient-text">Purchase</span>
+                </h1>
+                <p class="text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+                    Review your order and provide payment details for a secure checkout experience.
+                </p>
+            </div>
+
+            <!-- Progress Steps -->
+            <div class="flex justify-center mb-12 animate-fade-in" style="animation-delay: 0.2s;">
+                <div class="flex items-center justify-center space-x-8 lg:space-x-12">
+                    <!-- Step 1: Cart (Completed) -->
+                    <div class="step-indicator completed flex flex-col items-center group cursor-pointer">
+                        <div class="step-circle w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg text-white mb-3 relative">
+                            <i class="fas fa-check text-xl"></i>
+                        </div>
+                        <div class="text-center">
+                            <div class="step-text font-semibold text-emerald-600 text-base mb-1">Cart</div>
+                            <div class="text-xs text-gray-500 hidden sm:block">Items Selected</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Connector Arrow -->
+                    <div class="hidden sm:flex items-center">
+                        <div class="w-8 h-0.5 bg-gradient-to-r from-emerald-500 to-primary-500 rounded-full"></div>
+                        <i class="fas fa-chevron-right text-primary-500 mx-2 text-sm animate-pulse"></i>
+                        <div class="w-8 h-0.5 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full"></div>
+                    </div>
+                    
+                    <!-- Step 2: Checkout (Active) -->
+                    <div class="step-indicator active flex flex-col items-center group cursor-pointer">
+                        <div class="step-circle w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg text-white mb-3 relative">
+                            <i class="fas fa-credit-card text-xl"></i>
+                        </div>
+                        <div class="text-center">
+                            <div class="step-text font-semibold text-primary-600 text-base mb-1">Checkout</div>
+                            <div class="text-xs text-gray-500 hidden sm:block">Payment Details</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Connector Arrow -->
+                    <div class="hidden sm:flex items-center">
+                        <div class="w-8 h-0.5 bg-gray-200 rounded-full"></div>
+                        <i class="fas fa-chevron-right text-gray-300 mx-2 text-sm"></i>
+                        <div class="w-8 h-0.5 bg-gray-200 rounded-full"></div>
+                    </div>
+                    
+                    <!-- Step 3: Confirmation (Inactive) -->
+                    <div class="step-indicator inactive flex flex-col items-center group cursor-pointer">
+                        <div class="step-circle w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg mb-3 relative">
+                            <i class="fas fa-certificate text-xl"></i>
+                        </div>
+                        <div class="text-center">
+                            <div class="step-text font-semibold text-gray-500 text-base mb-1">Confirmation</div>
+                            <div class="text-xs text-gray-400 hidden sm:block">Order Complete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Checkout Form -->
+                    <div class="lg:col-span-2">
+                        <form id="checkoutForm" class="space-y-8">
+                            <!-- Customer Information -->
+                            <div class="bg-white rounded-3xl shadow-soft p-8 card-hover animate-slide-up" style="animation-delay: 0.3s;">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center shadow-md mr-4">
+                                        <i class="fas fa-user text-white text-lg"></i>
+                                    </div>
+                                    <h2 class="text-2xl font-display font-semibold text-neutral-800">
+                                        Customer Information
+                                    </h2>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="input-group">
+                                        <input type="text" id="fullName" name="fullName" placeholder=" " 
+                                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-500 focus:outline-none transition-colors duration-200" required>
+                                        <label for="fullName">Full Name</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="email" id="email" name="email" placeholder=" "
+                                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-500 focus:outline-none transition-colors duration-200" required>
+                                        <label for="email">Email Address</label>
+                                    </div>
+                                    <div class="input-group md:col-span-2">
+                                        <input type="text" id="address" name="address" placeholder=" "
+                                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-500 focus:outline-none transition-colors duration-200" required>
+                                        <label for="address">Street Address</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" id="city" name="city" placeholder=" "
+                                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-500 focus:outline-none transition-colors duration-200" required>
+                                        <label for="city">City</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" id="state" name="state" placeholder=" "
+                                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-500 focus:outline-none transition-colors duration-200" required>
+                                        <label for="state">State/Province</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" id="zipCode" name="zipCode" placeholder=" "
+                                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-500 focus:outline-none transition-colors duration-200" required>
+                                        <label for="zipCode">Zip/Postal Code</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <select id="country" name="country" 
+                                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-500 focus:outline-none transition-colors duration-200" required>
+                                            <option value="">Select Country</option>
+                                            <option value="US">United States</option>
+                                            <option value="CA">Canada</option>
+                                            <option value="GB">United Kingdom</option>
+                                            <option value="IN">India</option>
+                                            <option value="AU">Australia</option>
+                                            <option value="DE">Germany</option>
+                                            <option value="FR">France</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Proceed to Payment Button -->
+                                <div class="flex justify-center mt-6">
+                                    <button type="button" id="proceedToPaymentBtn"
+                                            class="w-full bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-primary-700 hover:to-secondary-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                        <i class="fas fa-arrow-right mr-2"></i>
+                                        Proceed to Payment
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-white rounded-3xl shadow-soft p-8 sticky top-8 card-hover animate-slide-up" style="animation-delay: 0.5s;">
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-md mr-4">
+                                    <i class="fas fa-shopping-bag text-white text-lg"></i>
+                                </div>
+                                <h2 class="text-2xl font-display font-semibold text-neutral-800">
+                                    Order Summary
+                                </h2>
+                            </div>
+                            
+                            <div id="orderSummary" class="space-y-4 mb-6">
+                                <!-- Cart items will be loaded here dynamically -->
+                                <div class="text-center py-8">
+                                    <i class="fas fa-shopping-cart text-gray-300 text-4xl mb-4"></i>
+                                    <p class="text-gray-500">Loading cart items...</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Order Totals -->
+                            <div class="border-t border-gray-200 pt-6 space-y-3">
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-600">Subtotal</span>
+                                    <span id="subtotal" class="font-medium">₹0.00</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-600">Shipping</span>
+                                    <span id="shipping" class="font-medium text-green-600">FREE</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-600">Tax</span>
+                                    <span id="tax" class="font-medium">₹0.00</span>
+                                </div>
+                                <div class="border-t border-gray-200 pt-3">
+                                    <div class="flex justify-between text-lg font-semibold">
+                                        <span class="text-gray-900">Total</span>
+                                        <span id="total" class="text-primary-600">₹0.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div class="mt-8 space-y-4">
+                                <button type="button" onclick="window.history.back()"
+                                        class="w-full bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-primary-700 hover:to-secondary-700 focus:outline-none focus:ring-4 focus:ring-primary-200 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                    <i class="fas fa-arrow-left mr-2"></i>
+                                    Back to Cart
+                                </button>
+                            </div>
+                            
+                            <!-- Trust Badges -->
+                            <div class="mt-6 pt-6 border-t border-gray-200">
+                                <div class="flex items-center justify-center space-x-6 text-xs text-gray-500">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-shield-alt text-green-500 mr-1"></i>
+                                        <span>SSL Secured</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-undo text-blue-500 mr-1"></i>
+                                        <span>Easy Returns</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-truck text-purple-500 mr-1"></i>
+                                        <span>Fast Shipping</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-20 left-10 w-20 h-20 bg-primary-200/20 rounded-full blur-xl floating-animation"></div>
+        <div class="absolute top-40 right-20 w-32 h-32 bg-secondary-200/20 rounded-full blur-2xl floating-animation" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-20 left-1/4 w-16 h-16 bg-accent-200/20 rounded-full blur-xl floating-animation" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script>
+        // Checkout page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCartItems();
+            initializeFormValidation();
+            initializePaymentHandlers();
+            initializeProceedToPayment();
+        });
+
+        function loadCartItems() {
+            const cart = JSON.parse(localStorage.getItem('trendora_cart') || '{}');
+            const orderSummary = document.getElementById('orderSummary');
+            const subtotalElement = document.getElementById('subtotal');
+            const taxElement = document.getElementById('tax');
+            const totalElement = document.getElementById('total');
+            
+            if (Object.keys(cart).length === 0) {
+                orderSummary.innerHTML = `
+                    <div class="text-center py-8">
+                        <i class="fas fa-shopping-cart text-gray-300 text-4xl mb-4"></i>
+                        <p class="text-gray-500">Your cart is empty</p>
+                        <a href="../index.html" class="text-primary-600 hover:text-primary-700 font-medium mt-2 inline-block">
+                            Continue Shopping
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            let subtotal = 0;
+            let itemsHtml = '';
+            
+            Object.values(cart).forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                itemsHtml += `
+                    <div class="flex items-center space-x-4 py-4 border-b border-gray-100 last:border-b-0">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-medium text-gray-900 truncate">${item.name}</h4>
+                            <p class="text-xs text-gray-500">Qty: ${item.quantity}</p>
+                        </div>
+                        <div class="text-sm font-semibold text-gray-900">
+                            ${formatPrice(itemTotal)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            orderSummary.innerHTML = itemsHtml;
+            
+            const tax = Math.round(subtotal * 0.08); // 8% tax
+            const total = subtotal + tax;
+            
+            subtotalElement.textContent = formatPrice(subtotal);
+            taxElement.textContent = formatPrice(tax);
+            totalElement.textContent = formatPrice(total);
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('en-IN', {
+                style: 'currency',
+                currency: 'INR'
+            }).format(price);
+        }
+
+        function initializeFormValidation() {
+            const form = document.getElementById('checkoutForm');
+            const inputs = form.querySelectorAll('input[required], select[required]');
+            
+            inputs.forEach(input => {
+                input.addEventListener('blur', validateField);
+                input.addEventListener('input', clearFieldError);
+            });
+            
+            form.addEventListener('submit', handleFormSubmit);
+        }
+
+        function validateField(event) {
+            const field = event.target;
+            const value = field.value.trim();
+            
+            if (!value) {
+                showFieldError(field, 'This field is required');
+                return false;
+            }
+            
+            // Specific validations
+            if (field.type === 'email' && !isValidEmail(value)) {
+                showFieldError(field, 'Please enter a valid email address');
+                return false;
+            }
+            
+            if (field.id === 'cardNumber' && !isValidCardNumber(value)) {
+                showFieldError(field, 'Please enter a valid card number');
+                return false;
+            }
+            
+            if (field.id === 'expiryDate' && !isValidExpiryDate(value)) {
+                showFieldError(field, 'Please enter a valid expiry date (MM/YY)');
+                return false;
+            }
+            
+            if (field.id === 'cvcCode' && !isValidCVC(value)) {
+                showFieldError(field, 'Please enter a valid CVC code');
+                return false;
+            }
+            
+            clearFieldError(field);
+            return true;
+        }
+
+        function showFieldError(field, message) {
+            field.classList.add('border-red-500');
+            field.classList.remove('border-gray-200');
+            
+            let errorElement = field.parentElement.querySelector('.error-message');
+            if (!errorElement) {
+                errorElement = document.createElement('div');
+                errorElement.className = 'error-message text-red-500 text-xs mt-1';
+                field.parentElement.appendChild(errorElement);
+            }
+            errorElement.textContent = message;
+        }
+
+        function clearFieldError(field) {
+            field.classList.remove('border-red-500');
+            field.classList.add('border-gray-200');
+            
+            const errorElement = field.parentElement.querySelector('.error-message');
+            if (errorElement) {
+                errorElement.remove();
+            }
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function isValidCardNumber(number) {
+            const cleaned = number.replace(/\s+/g, '');
+            return /^\d{13,19}$/.test(cleaned);
+        }
+
+        function isValidExpiryDate(date) {
+            return /^(0[1-9]|1[0-2])\/([0-9]{2})$/.test(date);
+        }
+
+        function isValidCVC(cvc) {
+            return /^\d{3,4}$/.test(cvc);
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const inputs = form.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!validateField({ target: input })) {
+                    isValid = false;
+                }
+            });
+            
+            if (!isValid) {
+                showNotification('Please correct the errors in the form', 'error');
+                return;
+            }
+            
+            // Process the order
+            processOrder();
+        }
+
+        function processOrder() {
+            const btn = document.getElementById('completeOrderBtn');
+            const originalText = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
+            
+            // Simulate order processing
+            setTimeout(() => {
+                const orderNumber = generateOrderNumber();
+                localStorage.setItem('trendora_last_order', orderNumber);
+                localStorage.removeItem('trendora_cart'); // Clear cart
+                
+                showNotification('Order placed successfully!', 'success');
+                
+                // Redirect to confirmation page
+                setTimeout(() => {
+                    window.location.href = 'order-confirmation.html';
+                }, 1500);
+            }, 2000);
+        }
+
+        function generateOrderNumber() {
+            return 'ORD-' + Date.now().toString().slice(-8);
+        }
+
+        function initializeProceedToPayment() {
+            const proceedBtn = document.getElementById('proceedToPaymentBtn');
+            
+            if (proceedBtn) {
+                proceedBtn.addEventListener('click', function() {
+                    // Validate customer information first
+                    let isValid = true;
+                    
+                    // Check only customer information fields
+                    const customerFields = ['fullName', 'email', 'address', 'city', 'state', 'zipCode', 'country'];
+                    
+                    customerFields.forEach(fieldId => {
+                        const field = document.getElementById(fieldId);
+                        if (field && !validateField({ target: field })) {
+                            isValid = false;
+                        }
+                    });
+                    
+                    if (!isValid) {
+                        showNotification('Please fill in all customer information fields correctly', 'error');
+                        return;
+                    }
+                    
+                    // Save customer information to localStorage
+                    const customerData = {
+                        fullName: document.getElementById('fullName').value,
+                        email: document.getElementById('email').value,
+                        address: document.getElementById('address').value,
+                        city: document.getElementById('city').value,
+                        state: document.getElementById('state').value,
+                        zipCode: document.getElementById('zipCode').value,
+                        country: document.getElementById('country').value
+                    };
+                    
+                    localStorage.setItem('trendora_customer_info', JSON.stringify(customerData));
+                    
+                    // Redirect to payment page
+                    window.location.href = 'payment.html';
+                });
+            }
+        }
+
+        function initializePaymentHandlers() {
+            // Payment method switching
+            const paymentMethodInputs = document.querySelectorAll('input[name="paymentMethod"]');
+            const cardPayment = document.getElementById('cardPayment');
+            const paypalPayment = document.getElementById('paypalPayment');
+            
+            paymentMethodInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.value === 'paypal') {
+                        cardPayment.classList.add('hidden');
+                        paypalPayment.classList.remove('hidden');
+                    } else {
+                        cardPayment.classList.remove('hidden');
+                        paypalPayment.classList.add('hidden');
+                    }
+                });
+            });
+            // Card number formatting
+            const cardNumberInput = document.getElementById('cardNumber');
+            if (cardNumberInput) {
+                cardNumberInput.addEventListener('input', function() {
+                    let value = this.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                    this.value = formattedValue;
+                });
+            }
+            
+            // Expiry date formatting
+            const expiryInput = document.getElementById('expiryDate');
+            if (expiryInput) {
+                expiryInput.addEventListener('input', function() {
+                    let value = this.value.replace(/\D/g, '');
+                    if (value.length >= 2) {
+                        value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                    }
+                    this.value = value;
+                });
+            }
+            
+            // CVC formatting
+            const cvcInput = document.getElementById('cvcCode');
+            if (cvcInput) {
+                cvcInput.addEventListener('input', function() {
+                    this.value = this.value.replace(/\D/g, '').substring(0, 4);
+                });
+            }
+        }
+
+        function showNotification(message, type = 'info') {
+            if (window.TrendoraApp && window.TrendoraApp.showNotification) {
+                window.TrendoraApp.showNotification(message, type);
+            }
+        }
+    </script>
+</body>
+</html>

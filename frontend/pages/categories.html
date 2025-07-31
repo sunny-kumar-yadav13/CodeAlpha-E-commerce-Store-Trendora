@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - Trendora E-commerce</title>
+    
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981',
+                        accent: '#f59e0b',
+                        dark: '#1f2937'
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-shopping-bag text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-dark">Trendora</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-primary transition-colors">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    <a href="products.html" class="text-gray-600 hover:text-primary transition-colors">
+                        <i class="fas fa-shopping-bag mr-2"></i>Products
+                    </a>
+                    <a href="categories.html" class="text-primary font-semibold">
+                        <i class="fas fa-th-large mr-2"></i>Categories
+                    </a>
+                </div>
+                
+                <!-- Right side buttons -->
+                <div class="flex items-center space-x-4">
+                    <a href="login.html" class="text-gray-600 hover:text-primary">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="cart.html" class="text-gray-600 hover:text-primary relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </a>
+                    <button class="md:hidden text-gray-600">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-4">
+        <div class="container mx-auto px-4">
+            <nav class="text-sm">
+                <a href="../index.html" class="text-gray-600 hover:text-primary">Home</a>
+                <span class="text-gray-400 mx-2">></span>
+                <span class="text-dark font-semibold">Categories</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Categories Hero Section -->
+    <section class="bg-gradient-to-r from-primary to-secondary text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">Shop by Categories</h1>
+            <p class="text-xl opacity-90">Discover products organized by your favorite categories</p>
+        </div>
+    </section>
+
+    <!-- Categories Grid -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Women's Fashion -->
+                <div class="category-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all transform hover:scale-105 cursor-pointer" data-category="women">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Women's Fashion" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                            <div class="text-center text-white">
+                                <i class="fas fa-eye text-3xl mb-2"></i>
+                                <p class="font-semibold">View Products</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-dark mb-2">Women's Fashion</h3>
+                        <p class="text-gray-600 mb-4">Elegant styles for modern women including dresses, tops, and more</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">120+ Products</span>
+                            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                                Explore <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Men's Fashion -->
+                <div class="category-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all transform hover:scale-105 cursor-pointer" data-category="men">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Men's Fashion" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                            <div class="text-center text-white">
+                                <i class="fas fa-eye text-3xl mb-2"></i>
+                                <p class="font-semibold">View Products</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-dark mb-2">Men's Fashion</h3>
+                        <p class="text-gray-600 mb-4">Contemporary styles for gentlemen including shirts, pants, and suits</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">95+ Products</span>
+                            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                                Explore <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footwear -->
+                <div class="category-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all transform hover:scale-105 cursor-pointer" data-category="footwear">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Footwear" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                            <div class="text-center text-white">
+                                <i class="fas fa-eye text-3xl mb-2"></i>
+                                <p class="font-semibold">View Products</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-dark mb-2">Footwear</h3>
+                        <p class="text-gray-600 mb-4">Step out in style with our collection of shoes, sneakers, and boots</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">80+ Products</span>
+                            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                                Explore <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessories -->
+                <div class="category-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all transform hover:scale-105 cursor-pointer" data-category="accessories">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Accessories" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                            <div class="text-center text-white">
+                                <i class="fas fa-eye text-3xl mb-2"></i>
+                                <p class="font-semibold">View Products</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-dark mb-2">Accessories</h3>
+                        <p class="text-gray-600 mb-4">Complete your look with bags, watches, jewelry, and more</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">65+ Products</span>
+                            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                                Explore <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Electronics -->
+                <div class="category-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all transform hover:scale-105 cursor-pointer" data-category="electronics">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Electronics" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                            <div class="text-center text-white">
+                                <i class="fas fa-eye text-3xl mb-2"></i>
+                                <p class="font-semibold">View Products</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-dark mb-2">Electronics</h3>
+                        <p class="text-gray-600 mb-4">Latest gadgets, smartphones, laptops, and tech accessories</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">45+ Products</span>
+                            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                                Explore <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Home & Living -->
+                <div class="category-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all transform hover:scale-105 cursor-pointer" data-category="home">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Home & Living" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                            <div class="text-center text-white">
+                                <i class="fas fa-eye text-3xl mb-2"></i>
+                                <p class="font-semibold">View Products</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-dark mb-2">Home & Living</h3>
+                        <p class="text-gray-600 mb-4">Furniture, decor, kitchen essentials, and home improvement items</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">75+ Products</span>
+                            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                                Explore <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                            <i class="fas fa-shopping-bag text-white text-sm"></i>
+                        </div>
+                        <h4 class="text-xl font-bold">Trendora</h4>
+                    </div>
+                    <p class="text-gray-400 mb-4">Your premium destination for fashion and lifestyle products.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 class="text-lg font-semibold mb-4">Quick Links</h5>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Info</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="text-lg font-semibold mb-4">Categories</h5>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Women's Fashion</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Men's Fashion</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Footwear</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Accessories</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="text-lg font-semibold mb-4">Newsletter</h5>
+                    <p class="text-gray-400 mb-4">Subscribe to get updates on new arrivals and offers</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" 
+                               class="flex-1 px-3 py-2 bg-gray-800 text-white rounded-l-lg focus:outline-none">
+                        <button class="bg-primary hover:bg-secondary px-4 py-2 rounded-r-lg transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Trendora. All rights reserved. Built with ❤️ for modern shoppers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script>
+        // Categories page specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryCards = document.querySelectorAll('.category-card');
+            
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    // Redirect to products page with category filter
+                    window.location.href = `products.html?category=${category}`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
